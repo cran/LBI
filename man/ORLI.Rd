@@ -1,0 +1,34 @@
+\name{ORLI}
+\alias{ORLI}
+\title{Odds Ratio and its Likelihood Interval between two groups without strata}
+\description{
+  Odds ratio and its likelihood interval between two groups without stratification
+}
+\usage{
+  ORLI(y1, n1, y2, n2, conf.level=0.95, k, eps=1e-8)
+}
+\arguments{
+  \item{y1}{positive event count of test (the first) group}
+  \item{n1}{total count of the test (the first) group. Maximum allowable value is 1e8.}
+  \item{y2}{positive event count of control (the second) group}
+  \item{n2}{total count of control (the second) group. Maximum allowable value is 1e8.}
+  \item{conf.level}{approximate confidence level to calculate k when k is missing.}
+  \item{k}{1/k likelihood interval will be provided}
+  \item{eps}{absolute value less than eps is regarded as negligible}
+}
+\details{
+  It calculates risk (proportion) difference and its likelihood interval between the two groups. The likelihood interval is asymmetric, and there is no standard error in the output. This does not support stratification.
+}
+\value{
+  There is no standard error.
+  \item{odd1}{odd from the first group, y1/(n1 - y1)}
+  \item{odd2}{odd from the second group, y2/(n2 - y2)}
+  \item{OR}{odds ratio, odd1/odd2}
+  \item{lower}{lower likelihood limit of OR}
+  \item{upper}{upper likelihood limit of OR}
+}
+\examples{
+  ORLI(7, 10, 3, 10)
+  ORLI(3, 10, 7, 10)
+}
+\author{Kyun-Seop Bae k@acr.kr}
