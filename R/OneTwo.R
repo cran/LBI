@@ -41,11 +41,11 @@ OneTwo = function(x, alpha=0.05)
                         nPara = c(2, 4, 2),
                         logLik = c(logL0, -r2$objective, max(-r2$objective - logL0, 0)))
   r0$Statistic = data.frame(Distribution = c("F", "Chisq"),
-                            CutoffLogLik = c(r3$cutoff, r4$cutoff), # cut-off value in log-likelihood
+                            CutoffLogLik = c(r3["cutoff"], r4["cutoff"]), # cut-off value in log-likelihood
                             StatCrit = c(qf(1 - alpha, 2, n0 - 2), qchisq(1 - alpha, 2)), # statistics critical value
-                            Statistic = c(r3$Fval, r4$Chisq),
-                            pval = c(r3$pval, r4$pval),
-                            Favor = c(ifelse(r3$pval < alpha, "Two group", "One group"), ifelse(r4$pval < alpha, "Two group", "One group")))
+                            Statistic = c(r3["Fval"], r4["Chisq"]),
+                            pval = c(r3["pval"], r4["pval"]),
+                            Favor = c(ifelse(r3["pval"] < alpha, "Two group", "One group"), ifelse(r4["pval"] < alpha, "Two group", "One group")))
   attr(r0$Statistic, "alpha") = alpha
   return(r0)
 }

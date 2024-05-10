@@ -29,11 +29,9 @@
   LIbin(3, 14, k=5)
   LIbin(3, 14, k=15)
   LIbin(3, 14)
-  binom.test(3, 14)
-  prop.test(3, 14)
 }
 \seealso{
-  \code{\link{binom.test}}, \code{\link{prop.test}}
+  \code{binom.test}, \code{prop.test}
 }
 \references{
   Fisher RA. Statistical methods and scientific inference. 3e. 1973. pp68-76.  
