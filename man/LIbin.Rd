@@ -29,6 +29,8 @@
   LIbin(3, 14, k=5)
   LIbin(3, 14, k=15)
   LIbin(3, 14)
+# binom.test(3, 14)
+# prop.test(3, 14) 
 }
 \seealso{
   \code{binom.test}, \code{prop.test}

@@ -10,9 +10,9 @@ LRT = function(n, pFull, pReduced, logLikFull, logLikReduced, alpha=0.05, Wilks=
     Chisq = 2*dLL
     pval = 1 - pchisq(Chisq, dP)
   } else {
-    cut0 = n/2*log(1 + dP*qf(1 - alpha, dP, n - dP)/(n - dP))
-    Fval = (exp(dLL*2/n) - 1)*(n - dP)/dP
-    pval = 1 - pf(Fval, dP, n - dP)
+    cut0 = n/2*log(1 + dP*qf(1 - alpha, dP, n - pFull)/(n - pFull))
+    Fval = (exp(dLL*2/n) - 1)*(n - pFull)/dP
+    pval = 1 - pf(Fval, dP, n - pFull)
   }
 
   if (dLL > cut0) { Verdict = "Full model is better."

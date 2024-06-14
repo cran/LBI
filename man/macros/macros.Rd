@@ -1,0 +1,1 @@
+\newcommand{\eacute}{\ifelse{latex}{\out{\'{e}}}{\ifelse{html}{\out{&eacute;}}{e}}}

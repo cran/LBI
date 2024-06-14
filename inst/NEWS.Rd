@@ -1,9 +1,15 @@
 \name{NEWS}
 \title{News for Package \pkg{LBI}}
 
-\section{Version 0.1.0 (2024-05-10)}{
+\section{Version 0.1.2 (2024-06-09)}{
   \itemize{
-    \item{Formula revised}
+    \item{LRT Formula revised}
+  }
+}
+
+\section{Version 0.1.1 (2024-05-10)}{
+  \itemize{
+    \item{LInorm, LInormVar, LRT Formula revised}
   }
 }
 

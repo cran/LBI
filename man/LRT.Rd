@@ -17,7 +17,12 @@
   \item{Wilks}{if TRUE, Wilks theorem (chi-square distribution) will be used, otherwise F distribution will be used.}
 }
 \details{
-  It performs likelihood ratio test with given fitting results. The default test is using F distribution. For small n (i.e. less than 100), you need to use F distribution.
+  It performs likelihood ratio test with given fitting results. The default test is using F distribution. For small n (i.e. less than 100), you need to use F distribution. 
+  If the residuals are normally distributed, the delta -2 log likelihood (the difference between -2LL, the objective function value of each model) follows exactly an F-distribution, independent of sample size.
+  When the distribution of the residuals is not normal (no matter what the distribution of the residuals is), it approaches a chi-square distribution as sample size increases (Wilks' theorem).
+  The extreme distribution of the F-distribution (when the degrees of freedom in the denominator go to infinity) is chi-square distribution.
+  The p-value from the F-distribution is slightly larger than the p-value from the chi-square distribution, meaning the F-distribution is more conservative. 
+  The difference decreases as sample size increases.
 }
 \value{
   \item{n}{number of observations}
@@ -35,5 +40,17 @@
   LRT(20, 4, 2, -58.085, -60.087, Wilks=TRUE)
   LRT(20, 4, 2, -57.315, -66.159)
   LRT(20, 4, 2, -57.315, -66.159, Wilks=TRUE)
+
+  r1 = lm(mpg ~ disp + drat + wt, mtcars)
+  r2 = lm(mpg ~ disp + drat, mtcars)
+  anova(r2, r1)
+  LRT(nrow(mtcars), r1$rank, r2$rank, logLik(r1), logLik(r2))  
+}
+\references{
+  \enumerate{
+    \item Ruppert D, Cressie N, Carroll RJ. A Transformation/Weighting Model For Estimating Michaelis-Menten Parameters. School of Operations Research and Industrial Engineering, College of Engineering, Cornell University. Technical Report No. 796. May 1988.
+    \item Scheff\eacute{} H. The Analysis of Variance. Wiley. 1959.
+    \item Wilks SS. The Large-Sample Distribution of the Likelihood Ratio for Testing Composite Hypotheses. \emph{Annals Math. Statist.} 1938;9:60-62
+  }
 }
 \author{Kyun-Seop Bae k@acr.kr}

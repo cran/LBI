@@ -27,7 +27,7 @@
   LIpois(4, k=8)      # Rhode
   LIpois(4)           # Bae
   LIpois(4, k=15)     # Fisher
-  poisson.test(4)
+#  poisson.test(4)
   LIpois(4, k=32)     # 0.7454614 11.7893612
 }
 \author{Kyun-Seop Bae k@acr.kr}
