@@ -1,2 +1,4 @@
 exportPattern("^[[:alpha:]]+")
 import("stats")
+importFrom("graphics", "abline", "contour", "locator", "points", "par")
+importFrom("utils", "flush.console")

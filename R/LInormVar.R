@@ -1,7 +1,8 @@
-LInormVar = function(x, k, conf.level=0.95) {
+LInormVar = function(x, k, conf.level=0.95)
+{
   x = x[!is.na(x)]
   n0 = length(x)
-  if (!is.numeric(x) | sum(is.infinite(x) > 0) | sum(is.nan(x)) > 0 | n0 < 3 | length(unique(x)) == 1) stop("Check the input!")  
+  if (!is.numeric(x) | sum(is.infinite(x) > 0) | sum(is.nan(x)) > 0 | n0 < 3 | length(unique(x)) == 1) stop("Check the input!")
   m0 = mean(x)
   v0 = var(x)*(n0 - 1)/n0
   s0 = sqrt(v0)
@@ -10,10 +11,10 @@ LInormVar = function(x, k, conf.level=0.95) {
   if (!missing(k)) {
     logk = log(k)
   } else {
-    logk = n0/2*log(1 + qf(conf.level, 1, n0 - 1)/(n0 - 1))
+    logk = n0/2*log(1 + qf(conf.level, 1, n0 - 2)/(n0 - 2)) # two parameters with one nuisance (mean)
     logk = min(logk, log(2/(1 - conf.level)))
   }
-  
+
   O2 = function(th) maxLL - sum(dnorm(x, mean=m0, sd=th, log=TRUE)) - logk
   sdLL = uniroot(O2, c(1e-7, s0))$root
   sdUL = uniroot(O2, c(s0, 100*s0))$root
@@ -24,6 +25,6 @@ LInormVar = function(x, k, conf.level=0.95) {
   attr(Res, "n") = n0
   attr(Res, "k") = exp(logk)
   attr(Res, "log(k)") = logk
-  attr(Res, "2*log(k)") = 2*logk
+  attr(Res, "maxLogLik") = maxLL
   return(Res)
 }
