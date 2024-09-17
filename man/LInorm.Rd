@@ -11,8 +11,8 @@
   \item{x}{a vector of observation}
   \item{k}{1/k likelihood interval will be calculated}
   \item{conf.level}{approximately corresponding confidence level. If k is specified, this is ignored.}
-  \item{PLOT}{1d(profile) plot or 2d(contour) plot. "both" also works.}
-  \item{LOCATE}{use locater. This works only with PLOT="2D" or "BOTH" option.}
+  \item{PLOT}{1d(profile) plot or 2d(contour) plot.}
+  \item{LOCATE}{use locater. This works only with PLOT="2D" option.}
   \item{Resol}{resolution for plot. This works only with PLOT=TRUE option.}
 }
 \details{
@@ -27,7 +27,7 @@
   x = c(-5.3, -4.5, -1.0, -0.7, 3.7, 3.9, 4.2, 5.5, 6.8, 7.4, 9.3)
   LInorm(x, k=1/0.15) # Pawitan Ex10-9 p289
   LInorm(x)
-  LInorm(x, PLOT=TRUE)
-  LInorm(x, PLOT=TRUE, LOCATE=TRUE)
+  LInorm(x, PLOT="1d")
+  LInorm(x, PLOT="2d", LOCATE=TRUE)
 }
 \author{Kyun-Seop Bae k@acr.kr}

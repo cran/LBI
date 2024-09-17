@@ -31,21 +31,21 @@ LInorm = function(x, k, conf.level=0.95, PLOT="", LOCATE=FALSE, Resol=201)
   attr(Res, "log(k)") = logk
   attr(Res, "maxLogLik") = maxLL
 
-  if (toupper(trimws(PLOT)) %in% c("1D", "PROFILE", "BOTH")) {
+  if (toupper(trimws(PLOT)) %in% c("1D", "PROFILE")) {
     x1 = seq(m0 - 2*(m0 - meanLL), m0 + 2*(meanUL - m0), length.out=Resol)
     y1 = rep(NA, Resol)
     for (i in 1:Resol) y1[i] = sum(dnorm(x, mean=x1[i], sd=s0, log=TRUE))
 
-    x2 = seq(s0 - 2*(s0 - sdLL), max(0, s0 + 2*(sdUL - s0)), length.out=Resol)
+    x2 = seq(max(1e-4, s0 - 2*(s0 - sdLL)), max(0, s0 + 2*(sdUL - s0)), length.out=Resol)
     y2 = rep(NA, Resol)
     for (i in 1:Resol) y2[i] = sum(dnorm(x, mean=m0, sd=x2[i], log=TRUE))
 
     oPar = par(mfrow=c(2, 2))
 
-    plot(x1, y1, type="l", xlab="Mean", ylab="log Likelihood")
+    plot(x1, y1, type="l", xlab="Mean", ylab="log Likelihood", ylim=c(maxLL - 3*logk, maxLL))
     abline(h=maxLL - logk, col="red")
 
-    plot(x2, y2, type="l", xlab="Standard Deviation", ylab="log Likelihood")
+    plot(x2, y2, type="l", xlab="Standard Deviation", ylab="log Likelihood", ylim=c(maxLL - 3*logk, maxLL))
     abline(h=maxLL - logk, col="red")
 
     plot(x1, exp(y1), type="l", xlab="Mean", ylab="Likelihood")
@@ -55,12 +55,12 @@ LInorm = function(x, k, conf.level=0.95, PLOT="", LOCATE=FALSE, Resol=201)
     abline(h=exp(maxLL - logk), col="red")
 
     par(oPar)
-  } else if (toupper(trimws(PLOT)) %in% c("2D", "CONTOUR", "BOTH")) {
+  } else if (toupper(trimws(PLOT)) %in% c("2D", "CONTOUR")) {
     Xs = seq(m0 - 2*(m0 - meanLL), m0 + 2*(meanUL - m0), length.out=Resol)
-    Ys = seq(s0 - 2*(s0 - sdLL), s0 + 2*(sdUL - s0), length.out=Resol)
+    Ys = seq(max(1e-4, s0 - 2*(s0 - sdLL)), s0 + 2*(sdUL - s0), length.out=Resol)
     mLik = matrix(NA, nrow=Resol, ncol=Resol)
     for (i in 1:Resol) for (j in 1:Resol) mLik[i, j] = sum(dnorm(x, mean=Xs[i], sd=Ys[j], log=TRUE))
-
+    mLik[mLik < maxLL - 3*logk] = maxLL - 3*logk
     contour(Xs, Ys, mLik, xlab="Mean", ylab="Standard Deviation")
     contour(Xs, Ys, mLik, nlevels=1, levels=maxLL - logk, col="red", add=TRUE)
     abline(h=s0, v=m0, lty=3)
