@@ -1,29 +1,28 @@
 LInorm = function(x, k, conf.level=0.95, PLOT="", LOCATE=FALSE, Resol=201)
 {
   x = x[!is.na(x)]
-  n0 = length(x)
+  n0 = length(x) ; sxx = sum(x^2) ; sx = sum(x)
   if (!is.numeric(x) | sum(is.infinite(x) > 0) | sum(is.nan(x)) > 0 | n0 < 3 | length(unique(x)) == 1) stop("Check the input!")
-  m0 = mean(x)
-  v0 = var(x)*(n0 - 1)/n0
+  m0 = sx/n0
+  v0 = sxx/n0 - m0^2
   s0 = sqrt(v0)
-  maxLL = sum(dnorm(x, mean=m0, sd=s0, log=TRUE))
+  maxLL = -n0*(log(2*pi*v0) + 1)/2
 
   if (!missing(k)) {
     logk = log(k)
   } else {
-#    logk = n0/2*log(1 + 2*qf(conf.level, 2, n0 - 2)/(n0 - 2))
     logk = n0/2*log(1 + 1*qf(conf.level, 1, n0 - 2)/(n0 - 2)) # two parameters with one nuisance
     logk = min(logk, log(2/(1 - conf.level)))
   }
 
-  O1 = function(th) maxLL - sum(dnorm(x, mean=th, sd=s0, log=TRUE)) - logk
-  O2 = function(th) maxLL - sum(dnorm(x, mean=m0, sd=th, log=TRUE)) - logk
+  O1 = function(th) maxLL + (n0*log(2*pi*v0) + (sxx - 2*th*sx + n0*th^2)/v0)/2 - logk
+  O2 = function(th) maxLL + (n0*log(2*pi*th) + (sxx - sx^2/n0)/th)/2 - logk
   meanLL = uniroot(O1, c(m0 - 10*s0, m0))$root
   meanUL = uniroot(O1, c(m0, m0 + 10*s0))$root
-  sdLL = uniroot(O2, c(1e-7, s0))$root
-  sdUL = uniroot(O2, c(s0, 100*s0))$root
-  varLL = sdLL^2
-  varUL = sdUL^2
+  varLL = uniroot(O2, c(1e-8, v0))$root
+  varUL = uniroot(O2, c(v0, 100*v0))$root
+  sdLL = sqrt(varLL)
+  sdUL = sqrt(varUL)
   Res = cbind(PE = c(m0, s0, v0), LL=c(meanLL, sdLL, varLL), UL=c(meanUL, sdUL, varUL))
   rownames(Res) = c("mean", "sd", "var")
   attr(Res, "n") = n0

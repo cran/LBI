@@ -1,12 +1,12 @@
 LInormVar = function(x, k, conf.level=0.95)
 {
   x = x[!is.na(x)]
-  n0 = length(x)
+  n0 = length(x) ; sxx = sum(x^2) ; sx = sum(x)
   if (!is.numeric(x) | sum(is.infinite(x) > 0) | sum(is.nan(x)) > 0 | n0 < 3 | length(unique(x)) == 1) stop("Check the input!")
-  m0 = mean(x)
-  v0 = var(x)*(n0 - 1)/n0
+  m0 = sx/n0
+  v0 = sxx/n0 - m0^2
   s0 = sqrt(v0)
-  maxLL = sum(dnorm(x, mean=m0, sd=s0, log=TRUE))
+  maxLL = -n0*(log(2*pi*v0) + 1)/2
 
   if (!missing(k)) {
     logk = log(k)
@@ -15,11 +15,11 @@ LInormVar = function(x, k, conf.level=0.95)
     logk = min(logk, log(2/(1 - conf.level)))
   }
 
-  O2 = function(th) maxLL - sum(dnorm(x, mean=m0, sd=th, log=TRUE)) - logk
-  sdLL = uniroot(O2, c(1e-7, s0))$root
-  sdUL = uniroot(O2, c(s0, 100*s0))$root
-  varLL = sdLL^2
-  varUL = sdUL^2
+  O2 = function(th) maxLL + (n0*log(2*pi*th) + (sxx - sx^2/n0)/th)/2 - logk
+  varLL = uniroot(O2, c(1e-8, v0))$root
+  varUL = uniroot(O2, c(v0, 100*v0))$root
+  sdLL = sqrt(varLL)
+  sdUL = sqrt(varUL)
   Res = cbind(PE = c(s0, v0), LL=c(sdLL, varLL), UL=c(sdUL, varUL))
   rownames(Res) = c("sd", "var")
   attr(Res, "n") = n0

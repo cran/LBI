@@ -1,10 +1,11 @@
 OneTwo = function(x, alpha=0.05)
 {
-  n0 = sum(is.finite(x))
-  m0 = mean(x, na.rm=T)
-  v0 = var(x, na.rm=T)*(n0 - 1)/n0
+  x = x[!is.na(x)] ; n0 = length(x) ; sxx = sum(x^2) ; sx = sum(x)
+  if (!is.numeric(x) | sum(is.infinite(x) > 0) | sum(is.nan(x)) > 0 | n0 < 3 | length(unique(x)) == 1) stop("Check the input!")
+  m0 = sx/n0
+  v0 = sxx/n0 - m0^2
   s0 = sqrt(v0)
-  logL0 = sum(dnorm(x, mean=m0, sd=s0, log=T))
+  logL0 = -n0*(log(2*pi*v0) + 1)/2
   r1 = list(n=n0, mean=m0, var=v0, sd=s0, logLik=logL0)
   p1 = 1
   mLL = function(TH, d0) {
