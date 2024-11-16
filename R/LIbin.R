@@ -6,7 +6,7 @@ LIbin = function(y, n, k, conf.level=0.95, eps=1e-8)
   if (!missing(k)) {
     logk = log(k)
   } else if (n == 1) {
-    logk = log(2/(1 - conf.level))    
+    logk = log(2/(1 - conf.level))
   } else {
     logk = n/2*log(1 + qf(conf.level, 1, n - 1)/(n - 1))
     logk = min(logk, log(2/(1 - conf.level)))
@@ -42,6 +42,6 @@ LIbin = function(y, n, k, conf.level=0.95, eps=1e-8)
     } else { UL = min(p0 + LE, 1) }
   }
 
-  Res = c(y = y, n = n, PE=p0, LL=LL, UL=UL, k=exp(logk))
+  Res = c(y=y, n=n, PE=p0, LL=LL, UL=UL, k=exp(logk))
   return(Res)
 }

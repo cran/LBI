@@ -16,7 +16,7 @@
   It calculates likelihood interval of sd and variance assuming normal distribution in one group. The likelihood interval is asymmetric and there is no standard error in the output.
 }
 \value{
-  \item{PE}{point estimation for the proportion}
+  \item{PE}{maximum likelihood estimate}
   \item{LL}{lower limit of likelihood interval}
   \item{UL}{upper limit of likelihood interval}
 }

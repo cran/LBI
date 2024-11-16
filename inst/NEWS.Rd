@@ -1,6 +1,16 @@
 \name{NEWS}
 \title{News for Package \pkg{LBI}}
 
+\section{Version 0.2.1 (2024-11-16)}{
+  \itemize{
+    \item{LIpois can handle a mean value and observation number}
+    \item{Error in the formular of LBCIvar fixed}
+    \item{Errata in manual fixed}
+    \item{LIvar renamed to LIvRatio}
+    \item{LIvar and LIvtest formula chanaged to be more conservative}
+  }
+}
+
 \section{Version 0.2.0 (2024-10-17)}{
   \itemize{
     \item{LBCIvar for variance of single group added}

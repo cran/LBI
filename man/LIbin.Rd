@@ -20,7 +20,7 @@
 \value{
   \item{y}{positive (concerning) event count}
   \item{n}{total trial count}
-  \item{PE}{point estimation for the proportion}
+  \item{PE}{maximum likelihood estimate on the proportion}
   \item{LL}{lower limit of likelihood interval}
   \item{UL}{upper limit of likelihood interval}
 }

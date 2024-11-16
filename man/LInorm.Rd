@@ -11,7 +11,7 @@
   \item{x}{a vector of observation}
   \item{k}{1/k likelihood interval will be calculated}
   \item{conf.level}{approximately corresponding confidence level. If k is specified, this is ignored.}
-  \item{PLOT}{1d(profile) plot or 2d(contour) plot.}
+  \item{PLOT}{"1d" for profile plot or "2d" for contour plot.}
   \item{LOCATE}{use locater. This works only with PLOT="2D" option.}
   \item{Resol}{resolution for plot. This works only with PLOT=TRUE option.}
 }
@@ -19,7 +19,7 @@
   It calculates likelihood interval of mean and sd assuming normal distribution in one group. There is no standard error in the output.
 }
 \value{
-  \item{PE}{point estimation for the proportion}
+  \item{PE}{maximum likelihood estimate}
   \item{LL}{lower limit of likelihood interval}
   \item{UL}{upper limit of likelihood interval}
 }

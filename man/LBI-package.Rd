@@ -23,6 +23,6 @@ It conducts likelihood based inference.
 \item Pawitan Y. In All Likelihood: Statistical Modelling and Inference Using Likelihood. 2001.
 \item Lehmann EL. Fisher, Nayman, and the Creation of Classical Statistics. 2011.
 \item Rohde CA. Introductory Statistical Inference with the Likelihood Function. 2014.
-\item Held L, Bove DS. Likelihood and Bayesian Inference. 2020.
+\item Held L, Bov\eacute{} DS. Likelihood and Bayesian Inference. 2020.
 }
 }
