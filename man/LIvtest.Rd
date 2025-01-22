@@ -1,6 +1,6 @@
 \name{LIvtest}
 \alias{LIvtest}
-\title{Likelihood Interval of variance and sd assuming Norml Distribution using means and SDs}
+\title{Likelihood Interval of variance and sd assuming Normal Distribution using means and SDs}
 \description{
   Likelihood interval of variance and sd assuming normal distribution. This is estimated likelihood interval, not profile likelihood interval.
 }

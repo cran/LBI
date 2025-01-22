@@ -1,6 +1,12 @@
 \name{NEWS}
 \title{News for Package \pkg{LBI}}
 
+\section{Version 0.2.2 (2024-12-16)}{
+  \itemize{
+    \item{Errata in manual fixed}
+  }
+}
+
 \section{Version 0.2.1 (2024-11-16)}{
   \itemize{
     \item{LIpois can handle a mean value and observation number}

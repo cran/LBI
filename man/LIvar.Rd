@@ -1,6 +1,6 @@
 \name{LIvar}
 \alias{LIvar}
-\title{Likelihood Interval of variance and sd assuming Norml Distribution with sample mean and sample size}
+\title{Likelihood Interval of variance and sd assuming Normal Distribution with sample mean and sample size}
 \description{
   Likelihood interval of sd and variance assuming normal distribution. This is estimated likelihood interval, not profile likelihood interval.
 }

@@ -1,6 +1,6 @@
 \name{LBCIvar}
 \alias{LBCIvar}
-\title{Likelihood Based Confidence Interval of sd and variance assuming Norml Distribution}
+\title{Likelihood Based Confidence Interval of sd and variance assuming Normal Distribution}
 \description{
   Likelihood based confidence interval of sd and variance assuming normal distribution. It usually shows narrower interval than convenrtional chi-square interval. This uses estimated likelihood, not profile likelihood. 
 }

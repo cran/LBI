@@ -1,6 +1,6 @@
 \name{LInormVar}
 \alias{LInormVar}
-\title{Likelihood Interval of sd and variance assuming Norml Distribution}
+\title{Likelihood Interval of sd and variance assuming Normal Distribution}
 \description{
   Likelihood interval of sd and variance assuming normal distribution. This is estimated likelihood interval, not profile likelihood interval.
 }

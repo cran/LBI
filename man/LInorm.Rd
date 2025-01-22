@@ -1,6 +1,6 @@
 \name{LInorm}
 \alias{LInorm}
-\title{Likelihood Interval of mean, sd and variance assuming Norml Distribution}
+\title{Likelihood Interval of mean, sd and variance assuming Normal Distribution}
 \description{
   Likelihood interval of mean and sd assuming normal distribution. This is estimated likelihood interval, not profile likelihood interval.
 }
