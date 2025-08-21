@@ -6,7 +6,7 @@ LBCIvar = function(x, conf.level=0.95)
   v0   = n0v0/n0
   maxLL = -n0*(log(2*pi*v0) + 1)/2
 
-  logk0 = n0/2*log(1 + qf(conf.level, 1, n0 - 2)/(n0 - 2)) # two parameters with one nuisance (mean)
+  logk0 = n0/2*log(1 + qf(conf.level, 1, n0 - 2)/(n0 - 2)) # initial guess for logk
   logk0 = min(logk0, log(2/(1 - conf.level)))
 
   O1 = function(th, logk) maxLL + (n0*log(2*pi*th) + n0v0/th)/2 - logk

@@ -1,6 +1,12 @@
 \name{NEWS}
 \title{News for Package \pkg{LBI}}
 
+\section{Version 0.2.3 (2025-08-21)}{
+  \itemize{
+    \item{F distribution nominators' degrees of freedom for LI of one group variance and two-group variance ratio are adjusted as n - 1.2 and n - 2.4 respectively.}
+  }
+}
+
 \section{Version 0.2.2 (2024-12-16)}{
   \itemize{
     \item{Errata in manual fixed}

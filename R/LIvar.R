@@ -7,7 +7,7 @@ LIvar = function(s1, n1, k, conf.level=0.95)
   if (!missing(k)) {
     logk = log(k)
   } else {
-    logk = n1/2*log(1 + qf(conf.level, 1, n1 - 2)/(n1 - 2)) # two parameters with one nuisance (mean)
+    logk = n1/2*log(1 + qf(conf.level, 1, n1 - 1.2)/(n1 - 1.2)) # 1.2 is empirical
     logk = min(logk, log(2/(1 - conf.level)))
   }
 

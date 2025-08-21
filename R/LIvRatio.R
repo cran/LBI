@@ -12,7 +12,7 @@ LIvRatio = function(x, y, k, conf.level=0.95)
   if (!missing(k)) {
     logk = log(k)
   } else {
-    logk = n/2*log(1 + qf(conf.level, 1, n - 2)/(n - 2)) # two parameters
+    logk = n/2*log(1 + qf(conf.level, 1, n - 2.4)/(n - 2.4)) # two parameters
     logk = min(logk, log(2/(1 - conf.level)))
   }
 
