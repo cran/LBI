@@ -7,12 +7,12 @@ LIvRatio = function(x, y, k, conf.level=0.95)
 
   R0 = v1/v2
   n = n1 + n2
+  df2 = n - max(2.4, 1.75*max(n1, n2)/min(n1, n2)) # df of denominator
   maxLL = -(n1*(log(2*pi*v1) + 1) + n2*(log(2*pi*v2) + 1))/2
-
   if (!missing(k)) {
     logk = log(k)
   } else {
-    logk = n/2*log(1 + qf(conf.level, 1, n - 2.4)/(n - 2.4)) # two parameters
+    logk = n/2*log(1 + qf(conf.level, 1, df2)/df2) # two parameters
     logk = min(logk, log(2/(1 - conf.level)))
   }
 
